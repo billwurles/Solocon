@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Solocon V.1</title>
+</head>
+<body>
+
+<h1>Search:</h1>
+<form action="search">
+    <input type="search" name="search" placeholder="Search...">
+    <input type="submit" value="Submit">
+</form>
+
+
+<p th:text="'Hello, ' + ${name} + '!'"/>
+</body>
+</html>
