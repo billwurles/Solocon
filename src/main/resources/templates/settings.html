@@ -8,10 +8,10 @@
 
 <h1>Sickrage Options:</h1>
 <form action="#" th:action="@{/settings}" th:object="${sickrage}" method="post">
-    <input type="text" th:field="*{name}" placeholder="Nickname">
-    <input type="text" th:field="*{hostname}" placeholder="Hostname/IP Address">
-    <input type="text" th:field="*{port}" placeholder="Port">
-    <input type="text" th:field="*{apikey}" placeholder="API Key">
+    <input type="text" th:field="*{name}" placeholder="Nickname" th:value="${nickname}">
+    http://<input type="text" th:field="*{hostname}" placeholder="Hostname/IP Address" th:value="${hostname}">
+    <input type="text" th:field="*{port}" placeholder="Port" th:value="${port}">
+    <input type="text" th:field="*{apikey}" placeholder="API Key" th:value="${apikey}">
     <input type="submit" value="Submit">
 </form>
 
