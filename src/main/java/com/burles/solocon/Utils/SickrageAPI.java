@@ -1,0 +1,52 @@
+package com.burles.solocon.Utils;
+
+import com.fasterxml.jackson.databind.JsonNode;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+public class SickrageAPI extends AbstractAPIAccess{
+
+    private final String apikey;
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    public SickrageAPI(String name, String hostname, int port, String apikey) {
+        super(name, hostname, port);
+        this.apikey = apikey;
+    }
+
+    public ArrayList<SearchItem> searchTVIndexers(String searchTerm) throws IOException {
+        //JsonNode json = template.getForObject("http://breakingpoint.local:8081/api/9e0ee36c9866b4b42ccc28ca15a3dcc3/?cmd=sb.searchindexers&name=good wife", JsonNode.class);
+        JsonNode result = super.getEndpointJSON("/api/"+apikey+"/?cmd=sb.searchindexers&name="+searchTerm);
+        ArrayList<SearchItem> searchList = new ArrayList<>();
+        for(JsonNode item : result.get("data").get("results")){
+            String dateStr = item.get("first_aired").asText();
+            Date date = new Date(); //TODO proper date parse error checking -
+            switch (dateStr) {
+                case "Unknown": date.setTime(253370678400L); //this date is 9999-01-01 - it represents unknown date
+                    break;
+                default:
+                    try{
+                        date = dateFormat.parse(dateStr);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+            }
+
+
+            searchList.add(new SearchItem(
+                    item.get("name").asText(),
+                    item.get("tvdbid").asInt(),
+                    date,
+                    Boolean.parseBoolean(item.get("in_show_list").asText()),
+                    item.get("indexer").asInt()
+            ));
+
+        }
+        return searchList;
+    }
+}
