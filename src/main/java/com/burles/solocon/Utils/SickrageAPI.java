@@ -1,5 +1,6 @@
 package com.burles.solocon.Utils;
 
+import com.burles.solocon.SickRage.SearchItem;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.IOException;
@@ -11,7 +12,6 @@ import java.util.Date;
 public class SickrageAPI extends AbstractAPIAccess{
 
     private final String apikey;
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public SickrageAPI(String name, String hostname, int port, String apikey) {
         super(name, hostname, port);
@@ -23,27 +23,15 @@ public class SickrageAPI extends AbstractAPIAccess{
         JsonNode result = super.getEndpointJSON("/api/"+apikey+"/?cmd=sb.searchindexers&name="+searchTerm);
         ArrayList<SearchItem> searchList = new ArrayList<>();
         for(JsonNode item : result.get("data").get("results")){
-            String dateStr = item.get("first_aired").asText();
-            Date date = new Date(); //TODO proper date parse error checking -
-            switch (dateStr) {
-                case "Unknown": date.setTime(253370678400L); //this date is 9999-01-01 - it represents unknown date
-                    break;
-                default:
-                    try{
-                        date = dateFormat.parse(dateStr);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-            }
+
 
 
             searchList.add(new SearchItem(
                     item.get("name").asText(),
-                    item.get("tvdbid").asInt(),
-                    date,
-                    Boolean.parseBoolean(item.get("in_show_list").asText()),
-                    item.get("indexer").asInt()
+                    item.get("first_aired").asText(),
+                    item.get("in_show_list").asBoolean(),
+                    item.get("indexer").asInt(),
+                    item.get("tvdbid").asInt()
             ));
 
         }
