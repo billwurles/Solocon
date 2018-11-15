@@ -1,4 +1,4 @@
-package com.burles.solocon.Config;
+package com.burles.solocon.Utils;
 
 import com.burles.solocon.SickRage.SearchItem;
 import com.burles.solocon.SickRage.SickrageAPI;

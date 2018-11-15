@@ -2,7 +2,7 @@ package com.burles.solocon;
 
 import com.burles.solocon.Utils.AbstractAPIAccess;
 import com.burles.solocon.SickRage.SearchItem;
-import com.burles.solocon.Utils.SickrageAPI;
+import com.burles.solocon.SickRage.SickrageAPI;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

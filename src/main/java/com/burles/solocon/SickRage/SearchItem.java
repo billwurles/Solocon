@@ -34,24 +34,11 @@ public class SearchItem {
                 break;
         }
     }
-//
-//    public String getFirst_aired() {
-//        return first_aired;
-//    }
-//
-//    public String getIn_show_list() {
-//        return in_show_list;
-//    }
-//
-//    public int getIndexer() {
-//        return indexer;
-//    }
-//
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public int getTvdbid() {
-//        return tvdbid;
-//    }
+
+    public String toHTML(){
+        return "<li>" +
+                "<p>"+firstAired+" - "+name +"</p>" +
+                "<p>"+inShowList+" - "+tvdbid +" - "+indexer+"</p>" +
+                "</li>";
+    }
 }

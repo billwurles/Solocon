@@ -1,7 +1,5 @@
 package com.burles.solocon.SickRage;
 
-import com.burles.solocon.Utils.SearchItem;
-
 import java.util.ArrayList;
 import java.util.List;
 

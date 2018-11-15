@@ -1,6 +1,7 @@
-package com.burles.solocon.Utils;
+package com.burles.solocon.SickRage;
 
 import com.burles.solocon.SickRage.SearchItem;
+import com.burles.solocon.Utils.AbstractAPIAccess;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class SickrageAPI extends AbstractAPIAccess{
+public class SickrageAPI extends AbstractAPIAccess {
 
     private final String apikey;
 

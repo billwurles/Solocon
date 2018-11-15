@@ -1,6 +1,5 @@
 package com.burles.solocon.SickRage;
 
-import com.burles.solocon.Utils.SearchItem;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
