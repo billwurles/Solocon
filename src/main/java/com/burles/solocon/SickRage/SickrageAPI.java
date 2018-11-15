@@ -24,9 +24,6 @@ public class SickrageAPI extends AbstractAPIAccess {
         JsonNode result = super.getEndpointJSON("/api/"+apikey+"/?cmd=sb.searchindexers&name="+searchTerm);
         ArrayList<SearchItem> searchList = new ArrayList<>();
         for(JsonNode item : result.get("data").get("results")){
-
-
-
             searchList.add(new SearchItem(
                     item.get("name").asText(),
                     item.get("first_aired").asText(),
@@ -34,8 +31,20 @@ public class SickrageAPI extends AbstractAPIAccess {
                     item.get("indexer").asInt(),
                     item.get("tvdbid").asInt()
             ));
-
         }
         return searchList;
+    }
+
+    public boolean addTVShow(int tvdbid) throws IOException {
+        JsonNode result = super.getEndpointJSON("/api/"+apikey+"/?cmd=show.addnew&tvdbid="+tvdbid); //TODO: Take advantage of advanced options with this endpoint
+        String success = result.get("result").asText();
+        switch (success){
+            case "success":
+                return true;
+            case "failure":
+                return false;
+            default:
+                return false;
+        }
     }
 }

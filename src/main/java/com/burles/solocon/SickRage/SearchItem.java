@@ -38,7 +38,7 @@ public class SearchItem {
     public String toHTML(){
         return "<li>" +
                 "<p>"+firstAired+" - "+name +"</p>" +
-                "<p>"+inShowList+" - "+tvdbid +" - "+indexer+"</p>" +
+                "<p>"+inShowList+" - <a href=\"/sickrage/addshow?tvdbid="+tvdbid+"\">Add This Show</a> - "+indexer+"</p>" +
                 "</li>";
     }
 }
